@@ -1,0 +1,8 @@
+.git
+*.egg-info
+build
+dist
+test_working_dir
+projects
+.python-version
+bp.log

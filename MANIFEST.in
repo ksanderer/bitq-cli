@@ -1,0 +1,2 @@
+include bp/config/main.conf
+include bp/config/projects/project_name.conf

@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4128f47-0f6f-4628-9f2f-26a5785b5fbb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bp/lib/bkp/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bp/lib/bkp/api_client.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bp/lib/bkp/bkp_sdk.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tmp_conf/main.conf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bp/backup_project.py" afterPath="$PROJECT_DIR$/bp/backup_project.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bp/lib/backblaze_uploader.py" afterPath="$PROJECT_DIR$/bp/lib/backblaze_uploader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bp/lib/gcs_uploader.py" afterPath="$PROJECT_DIR$/bp/lib/gcs_uploader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bp/main.py" afterPath="$PROJECT_DIR$/bp/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
     </list>
     <ignored path="bkp-cli.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,7 +58,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
@@ -93,7 +83,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
               <first_editor relative-caret-position="462">
-                <caret line="39" column="84" lean-forward="false" selection-start-line="39" selection-start-column="84" selection-end-line="39" selection-end-column="84" />
+                <caret line="39" column="106" lean-forward="false" selection-start-line="39" selection-start-column="106" selection-end-line="39" selection-end-column="106" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -157,7 +147,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="578">
@@ -237,8 +227,8 @@
         <option value="$PROJECT_DIR$/bp/backup_project.py" />
         <option value="$PROJECT_DIR$/bp/main.py" />
         <option value="$PROJECT_DIR$/bp/lib/backblaze_uploader.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -299,6 +289,19 @@
               <item name="bkp-cli" type="b2602c69:ProjectViewProjectNode" />
               <item name="bkp-cli" type="462c0819:PsiDirectoryNode" />
               <item name="bp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bkp-cli" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bkp-cli" type="462c0819:PsiDirectoryNode" />
+              <item name="bp" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bkp-cli" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bkp-cli" type="462c0819:PsiDirectoryNode" />
+              <item name="bp" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="projects" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="bkp-cli" type="b2602c69:ProjectViewProjectNode" />
@@ -992,10 +995,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        <state relative-caret-position="578">
+          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1004,7 +1007,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="462">
-            <caret line="39" column="84" lean-forward="false" selection-start-line="39" selection-start-column="84" selection-end-line="39" selection-end-column="84" />
+            <caret line="39" column="106" lean-forward="false" selection-start-line="39" selection-start-column="106" selection-end-line="39" selection-end-column="106" />
             <folding />
           </first_editor>
           <second_editor />
@@ -1017,10 +1020,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="136">
+          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
           <folding />
         </state>
       </provider>

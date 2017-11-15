@@ -12,7 +12,7 @@ Should you wish to download and install it using the source code,
 you can do as follows:
 
 ```bash
-git clone https://github.com/bitqwe/bitqwe-cli.
+git clone https://github.com/bitqwe/bitqwe-cli
 cd bitqwe-cli/
 ```
 Install the package.
@@ -22,14 +22,14 @@ python3 setup.py install
 ```
 
 ## Getting Started
-1. First and foremost you should setup main.conf config file:
+1. First and foremost you should setup `main.conf` config file:
 
         [settings]
             HOST=http://bitqwe.com
             AUTH_TOKEN=your_token_here
             BACKUP_DIR=tmp_dir
 
-    Note that `BACKUP_DIR` both can be absolute or
+    Note that `BACKUP_DIR` can be absolute or
     relative as well.
 
 2. Now we are ready to configure our first project:
@@ -37,7 +37,7 @@ python3 setup.py install
         pb new --name=project_name
 
     Or just create new `{PROJECTS_DIR}/project_name.conf` file from scratch.
-    Detailed description on projects `.conf` files placed <a href="http://bitqwe.com/docs/cli/project">here</a>.
+    Detailed description on projects `.conf` files placed <a href="http://bitqwe.com/docs/cli/project-conf">here</a>.
 
 3. Adding cron job:
 

@@ -1,3 +1,7 @@
+## Documentation
+
+[http://bitqwe.com/docs/cli](http://bitqwe.com/docs/cli)
+
 ## installation
 
 ### Using PIP
@@ -18,33 +22,31 @@ cd bitqwe-cli/
 Install the package.
 
 ```bash
-python3 setup.py install
+pip install -e .
 ```
 
 ## Getting Started
 1. First and foremost you should setup `main.conf` config file:
 
         [settings]
-            HOST=http://bitqwe.com
+            HOST=bitqwe.com
             AUTH_TOKEN=your_token_here
-            BACKUP_DIR=tmp_dir
+            BACKUP_DIR=tmp_dir_to_store_files
 
-    Note that `BACKUP_DIR` can be absolute or
-    relative as well.
+    Note that `BACKUP_DIR` can be absolute or relative.
 
 2. Now we are ready to configure our first project:
 
-        pb new --name=project_name
-
-    Or just create new `{PROJECTS_DIR}/project_name.conf` file from scratch.
+    You can use example project config file - [example file](https://github.com/ksanderer/bitq-cli/blob/master/bp/config/projects/project_name.conf)
     Detailed description on projects `.conf` files placed <a href="http://bitqwe.com/docs/cli/project-conf">here</a>.
+    
 
 3. Adding cron job:
 
         crontab -e
 
         ----------
-        0 * * * * bp backup
+        0 * * * * bitq backup
 
     We recommend to set hourly cron job. There can't be any process race conditions
     so you should not think about that. If on backup process already running new

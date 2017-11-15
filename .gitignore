@@ -1,9 +1,12 @@
 .git
+.idea/
 *.egg-info
 build
 dist
 test_working_dir
-/tmp_conf
 /projects
 .python-version
 bp.log
+/tmp_conf/
+/tmp_conf/main.conf
+__pycache__

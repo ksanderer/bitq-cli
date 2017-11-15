@@ -27,18 +27,17 @@ python3 setup.py install
         [settings]
             HOST=http://bitqwe.com
             AUTH_TOKEN=your_token_here
-            PROJECTS_DIR=projects/dir
             BACKUP_DIR=tmp_dir
 
-    Note that `PROJECTS_DIR` and `BACKUP_DIR` both can be absolute and
+    Note that `BACKUP_DIR` both can be absolute or
     relative as well.
 
 2. Now we are ready to configure our first project:
 
         pb new --name=project_name
 
-    Or just create new `PROJECTS_DIR/project_name.conf` file from scratch.
-    Detailed description on projects `.conf` files placed <a href="/docs/cli/project">here</a>.
+    Or just create new `{PROJECTS_DIR}/project_name.conf` file from scratch.
+    Detailed description on projects `.conf` files placed <a href="http://bitqwe.com/docs/cli/project">here</a>.
 
 3. Adding cron job:
 

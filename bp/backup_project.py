@@ -7,7 +7,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 import requests
 import hashlib
 
-from .lib.gcs_uploader import GCSUploader
+from .lib.bkp.bkp_sdk import BKP_SDK
+# from .lib.gcs_uploader import GCSUploader
 from .lib.helpers import *
 
 from .models import OriginLock, locks_db, init_databases
@@ -124,7 +125,7 @@ def blank_logger(*args, **kwargs):
 class BackupManager(object):
     project_name = None
 
-    def __init__(self, config, schedule, logger=None):
+    def __init__(self, config, schedule, logger=None, bkp_sdk=None):
         self.storage_service = "gcs"
 
         self.config = config
@@ -138,6 +139,11 @@ class BackupManager(object):
         self.project_config = None
         self.settings = None
         self.logger = logger
+
+        if bkp_sdk is not None:
+            self.bkp_sdk = bkp_sdk
+        else:
+            self.bkp_sdk = BKP_SDK(self.host, self.auth_token)
 
         if self.logger is None:
             self.logger = blank_logger
@@ -278,20 +284,23 @@ class BackupManager(object):
 
                 lock.lock_init(file_path=file_path, file_hash=file_hash)
 
-                fu = GCSUploader(
-                    file_path=file_path,
-                    file_hash=file_hash,
-                    resume_upload=resume_upload,
-                    data=dict(
-                        expires=KEYS['BACKUP_EXPIRES'],
-                        project=self.settings['PROJECT_NAME'],
-                        origin=section,
-                    ),
-                    auth_token=self.auth_token,
-                    api_host=self.host
-                )
+                upload_success = self.bkp_sdk.upload(project_name=self.settings['PROJECT_NAME'],
+                        origin_name=section, file_path=file_path, file_hash=file_hash)
 
-                upload_success = fu.upload()
+                # fu = GCSUploader(
+                #     file_path=file_path,
+                #     file_hash=file_hash,
+                #     resume_upload=resume_upload,
+                #     data=dict(
+                #         expires=KEYS['BACKUP_EXPIRES'],
+                #         project=self.settings['PROJECT_NAME'],
+                #         origin=section,
+                #     ),
+                #     auth_token=self.auth_token,
+                #     api_host=self.host
+                # )
+
+                # upload_success = fu.upload()
 
                 if upload_success:
                     lock.lock_delete()
@@ -311,11 +320,11 @@ class BackupManager(object):
                 lock.lock_delete()
                 os.remove(file_path)
                 raise KeyboardInterrupt()
-            except GCSUploader.AbortException as ex:
+            except BKP_SDK.AbortException as ex:
                 self.logger("\tAborting: %s" % ex.__str__())
                 lock.lock_delete()
                 os.remove(file_path)
-            except GCSUploader.UploadException as ex:
+            except BKP_SDK.UploadException as ex:
                 self.logger("\t%s" % ex.__str__())
                 # lock.lock_reset()
             finally:

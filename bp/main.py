@@ -10,7 +10,8 @@ import requests
 from .backup_project import BackupManager
 from .lib.config import Config, Schedule
 from .lib.helpers import *
-from .lib.bp_api import BPAPI
+# from .lib.bp_api import BPAPI
+from .lib.bkp.bkp_sdk import BKP_SDK
 
 PACKAGE_NAME = "bp"
 CONFIG_DIR = "/etc/%s" % PACKAGE_NAME
@@ -24,6 +25,13 @@ def check_main_conf(ctx):
             click.echo("AUTH_TOKEN or WORKING_DIR not set in %s/main.conf" % ctx.obj['CONFIG_DIR'])
         else:
             click.echo("Missing required config file \"main.conf\" in %s" % ctx.obj['CONFIG_DIR'])
+            click.echo(
+                "In order to use default config dir /etc/bp you need to manually create it\r\n"
+                "take a look at:\r\n"
+                "\r\n"
+                "Starting guide - http://bitqwe.com/docs/cli#getting-started\r\n"
+                "Project config setup - http://bitqwe.com/docs/cli/project-conf\r\n"
+            )
 
         return False
 
@@ -93,13 +101,13 @@ def download(ctx, file, stream):
     if not check_main_conf(ctx):
         return
 
-    resp = ctx.obj['api'].get_download_url(file_id=file)
+    file = int(file)
 
-    if not resp['success']:
+    resp = ctx.obj['api'].client.file.file_download(id=file).result()
+
+    if 'error_code' in resp:
         click.echo(resp['error_message'])
         return
-
-    resp = resp['response']
 
     if stream:
         r = requests.get(resp['download_url'])
@@ -108,7 +116,7 @@ def download(ctx, file, stream):
         for chunk in r.iter_content(chunk_size=512 * 1024):
             stdout_binary.write(chunk)
     else:
-        print(resp['download_url'])
+        click.echo(resp['download_url'])
 
 
 # @click.command()
@@ -138,7 +146,7 @@ def files(ctx, project, origin):
 
     api = ctx.obj['api']
 
-    resp = api.file_list(project_name=project, origin_name=origin)
+    resp = api.cleint.file.file_list(project_name=project, origin_name=origin)
     if not resp['success']:
         click.echo(resp['error_message'])
         return
@@ -309,14 +317,14 @@ def cli(ctx, config):
 
     ctx.obj["config"] = conf_obj
 
-    # schedule tracks times to next backup project start
-    schedule = Schedule(working_dir=ctx.obj["WORKING_DIR"])
-    ctx.obj["bkp"] = BackupManager(config=conf_obj, schedule=schedule, logger=click.echo)
-
     # Register bp api
     auth_token = ctx.obj['config'].main['settings']['AUTH_TOKEN']
     host = ctx.obj['config'].main['settings']['HOST']
-    ctx.obj['api'] = BPAPI(auth_token=auth_token, host=host)
+    ctx.obj['api'] = BKP_SDK(token=auth_token, host=host)
+
+    # schedule tracks times to next backup project start
+    schedule = Schedule(working_dir=ctx.obj["WORKING_DIR"])
+    ctx.obj["bkp"] = BackupManager(config=conf_obj, schedule=schedule, logger=click.echo, bkp_sdk=ctx.obj["api"])
 
     atexit.register(schedule.save)
     # atexit.register(helpers.rm_dir__callback(ctx.obj["BACKUP_DIR"]))

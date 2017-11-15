@@ -3,6 +3,7 @@
 build
 dist
 test_working_dir
+tmp_conf
 projects
 .python-version
 bp.log

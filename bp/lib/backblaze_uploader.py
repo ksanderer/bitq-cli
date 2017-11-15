@@ -2,11 +2,14 @@ import datetime
 import requests
 import json
 import threading
-import queue
 import hashlib
 import os
 import configparser
 import ntpath
+try:
+    import queue
+except ImportError:
+    import Queue as queue
 
 
 class BackblazeAPIException(Exception):
@@ -15,7 +18,7 @@ class BackblazeAPIException(Exception):
     message = None
 
     def __init__(self, status, code, message):
-        super().__init__(message)
+        super(BackblazeAPIException, self).__init__(message)
 
         self.status = status
         self.code = code

@@ -175,10 +175,11 @@ class GCSUploader(object):
             r = requests.post(self.api_host + "/api/upload_large_file/start/", data=data, headers=headers)
 
             if r.status_code != 200:
-                raise self.UploadException("Host responded with code %s\r\nResponse body:\r\n%s" % (str(r.status_code), r.text))
+                raise self.UploadException("Host responded with code %d\r\nResponse body:\r\n%s" % (r.status_code, r.text))
 
             return r.json()
         except requests.RequestException as ex:
+            print("RLY?")
             raise self.UploadException("Host is unreachable.")
 
     def upload_close(self, file_id):

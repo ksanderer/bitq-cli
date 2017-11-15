@@ -11,7 +11,7 @@ from .backup_project import BackupManager
 from .lib.config import Config, Schedule
 from .lib.helpers import *
 # from .lib.bp_api import BPAPI
-from .lib.bkp.bkp_sdk import BKP_SDK
+from .lib.bitq.bkp_sdk import BKP_SDK
 
 PACKAGE_NAME = "bp"
 CONFIG_DIR = "/etc/%s" % PACKAGE_NAME

@@ -12,6 +12,7 @@ setup_options = dict(
     packages=[
         'bp',
         'bp.lib',
+        'bp.lib.bitq',
     ],
     install_requires=['configparser', 'requests', 'click', 'peewee'],
     entry_points={

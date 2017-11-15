@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 import requests
 import hashlib
 
-from .lib.bkp.bkp_sdk import BKP_SDK
+from .lib.bitq.bkp_sdk import BKP_SDK
 # from .lib.gcs_uploader import GCSUploader
 from .lib.helpers import *
 

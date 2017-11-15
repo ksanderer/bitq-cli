@@ -146,23 +146,28 @@ def files(ctx, project, origin):
 
     api = ctx.obj['api']
 
-    resp = api.cleint.file.file_list(project_name=project, origin_name=origin)
-    if not resp['success']:
+    resp = api.client.file.file_list(project_name=project, origin_name=origin).result()
+    if 'error_code' in resp:
         click.echo(resp['error_message'])
         return
 
-    resp = resp['response']
+    file_tree = dict()
+    for f in resp:
+        if f['origin_name'] not in file_tree:
+            file_tree[f['origin_name']] = []
 
-    for project_name in resp.keys():
-        click.echo("[%s]" % project_name)
+        file_tree[f['origin_name']].append(f)
 
-        for origin_name in resp[project_name].keys():
-            click.echo("\t[%s]" % origin_name)
+    # for project_name in resp.keys():
+    #     click.echo("[%s]" % project_name)
 
-            for file_item in resp[project_name][origin_name]:
-                # print(resp[project_name][origin_name])
-                # file_item = resp[project_name][origin_name][file_num]
-                click.echo("\t\t[%s] %s (%s)" % (file_item['id'], file_item['name'], file_item['date']))
+    for origin_name in file_tree.keys():
+        click.echo("[%s]" % origin_name)
+
+        for file_item in file_tree[origin_name]:
+            # print(resp[project_name][origin_name])
+            # file_item = resp[project_name][origin_name][file_num]
+            click.echo("\t[%s] %s (%s)" % (file_item['id'], file_item['name'], file_item['created']))
 
 # @click.command()
 # @click.argument('action')

@@ -37,6 +37,10 @@ class BKP_SDK(object):
         init_data = self._prepare_init_data(project_name, origin_name, file_path, file_hash, file_name)
         upload_data = self._init_upload(init_data)
 
+        if upload_data['in_storage']:
+            # File already uploaded
+            return True
+
         upload_url = upload_data['upload_urls'][0]
         file_id = upload_data['file_id']
 

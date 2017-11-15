@@ -239,7 +239,7 @@ class BackupManager(object):
                 # min_ago = round((time.time() - backup_latest) / 60, 2)
                 sec_ago = time.time() - backup_latest
 
-                if time.time() < backup_interval + backup_latest:
+                if not force and time.time() < backup_interval + backup_latest:
                     self.logger("[%s] -> [%s] skipping.. latest backup %s ago (out of %s).\r\n" % (
                         self.project_name, section, interval_seconds_to_str(sec_ago, interval_letter), self.project_config[section]['BACKUP_INTERVAL']
                     ))
@@ -284,8 +284,12 @@ class BackupManager(object):
 
                 lock.lock_init(file_path=file_path, file_hash=file_hash)
 
-                upload_success = self.bkp_sdk.upload(project_name=self.settings['PROJECT_NAME'],
-                        origin_name=section, file_path=file_path, file_hash=file_hash)
+                upload_success = self.bkp_sdk.upload(
+                    project_name=self.settings['PROJECT_NAME'],
+                    origin_name=section,
+                    file_path=file_path,
+                    file_hash=file_hash
+                )
 
                 # fu = GCSUploader(
                 #     file_path=file_path,

@@ -14,7 +14,7 @@ setup_options = dict(
         'bp.lib',
         'bp.lib.bitq',
     ],
-    install_requires=['configparser', 'requests', 'click', 'peewee'],
+    install_requires=['configparser', 'requests', 'click', 'peewee', 'bravado'],
     entry_points={
         'console_scripts': [
               'bp = bp.main:cli'

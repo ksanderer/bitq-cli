@@ -14,6 +14,12 @@ except ImportError:
 class BKP_SDK(object):
     hash_method = "md5"
 
+    # 2 - File you try to upload already exists in storage. Virtual clone was created for timeline transparency.
+    success_error_codes = [2]
+    # Error codes list when we should abort upload and restart it.
+    # 8 - Try to upload file with 0 size.
+    abort_error_codes = [8]
+
     class UploadException(Exception):
         # Exception while uploading file.
         # Means we can resume upload later.

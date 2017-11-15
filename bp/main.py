@@ -13,7 +13,7 @@ from .lib.helpers import *
 # from .lib.bp_api import BPAPI
 from .lib.bitq.bkp_sdk import BKP_SDK
 
-PACKAGE_NAME = "bp"
+PACKAGE_NAME = "bitq"
 CONFIG_DIR = "/etc/%s" % PACKAGE_NAME
 BACKUP_DIR = "backup_files"
 PROJECTS_DIR = "projects"

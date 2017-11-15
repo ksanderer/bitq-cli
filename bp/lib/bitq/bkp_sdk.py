@@ -57,7 +57,7 @@ class BKP_SDK(object):
             raise self.UploadException("Upload was failed. Probably due the internet connection problems or "
                                        "API server maintenance.")
 
-        resp = self.client.file.file_upload_end(pk=file_id).result()
+        resp = self.client.file.file_upload_end(id=file_id).result()
 
         if 'error_code' in resp:
             raise self.UploadException("Error code - %d: %s" % (resp['error_code'], resp['error_message']))

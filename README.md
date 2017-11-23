@@ -16,8 +16,7 @@ Should you wish to download and install it using the source code,
 you can do as follows:
 
 ```bash
-git clone https://github.com/bitqwe/bitqwe-cli
-cd bitqwe-cli/
+git clone https://github.com/ksanderer/bitq-cli.git && cd bitq-cli/
 ```
 Install the package.
 
